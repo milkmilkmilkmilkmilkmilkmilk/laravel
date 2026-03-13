@@ -14,7 +14,8 @@ class CommentFactory extends Factory
     {
         return [
             'text' => fake()->text(),
-            'article_id' => \App\Models\Article::factory(), // автоматическая привязка к Article
+            'article_id' => \App\Models\Article::factory(),
+            'user_id'    => \App\Models\User::factory(),
         ];
     }
 }
