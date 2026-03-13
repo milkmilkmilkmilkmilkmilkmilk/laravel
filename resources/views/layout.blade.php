@@ -6,13 +6,10 @@
 
     <title>Laravel</title>
 
-    <!-- Vite CSS + JS -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-    <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
 </head>
@@ -76,18 +73,10 @@
 
 <main>
     <div class="container mt-5">
-
-        <!-- Vue mount -->
-        <div id="app">
-
-        </div>
-
         @yield('content')
-
     </div>
 </main>
 
-<!-- Bootstrap 5 JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>

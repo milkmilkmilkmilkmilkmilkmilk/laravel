@@ -12,10 +12,8 @@ use App\Jobs\VeryLongJob;
 
 class CommentController extends Controller
 {
-    // Модерация
     public function index()
     {
-        // Показываем только комментарии, которые НЕ приняты
         $comments = Comment::where('accept', false)
                            ->latest()
                            ->paginate(10);
@@ -23,7 +21,6 @@ class CommentController extends Controller
         return view('mail.index', ['comments' => $comments]);
     }
 
-    // Добавление комментария
     public function store(Request $request)
     {
         $request->validate([
@@ -31,7 +28,6 @@ class CommentController extends Controller
             'article_id' => 'required|exists:articles,id',
         ]);
 
-        // Создаём комментарий
         $comment = new Comment();
         $comment->text = $request->text;
         $comment->user_id = auth()->id();
@@ -39,7 +35,6 @@ class CommentController extends Controller
         $comment->accept = false;
         $comment->save();
 
-     // Диспетчер очереди вместо прямого отправления
         $article = $comment->article;
         $author = $comment->user->name;
 
@@ -50,7 +45,6 @@ class CommentController extends Controller
             ->with('message', 'Комментарий успешно добавлен и отправлен на модерацию.');
     }
 
-    // Редактирование
     public function edit(Comment $comment)
     {
         Gate::authorize('update', $comment);
@@ -71,7 +65,6 @@ class CommentController extends Controller
         return redirect()->route('article.show', $comment->article_id);
     }
 
-    // Удаление
     public function delete(Comment $comment)
     {
         Gate::authorize('delete', $comment);
@@ -79,7 +72,6 @@ class CommentController extends Controller
         return redirect()->back();
     }
 
-    // Принять комментарий
     public function accept(Comment $comment)
     {
         $comment->accept = true;
@@ -89,7 +81,6 @@ class CommentController extends Controller
             ->with('message', 'Комментарий одобрен.');
     }
 
-    // Отклонить комментарий
     public function reject(Comment $comment)
     {
         $comment->delete();

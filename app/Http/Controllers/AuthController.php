@@ -16,7 +16,6 @@ class AuthController extends Controller
     public function registr(Request $request){
         $request->validate([
             'name'=>'required',
-            // 'email'=> 'email|required|unique:App\Models\User',
             'email'=> 'email|required|unique:users',
             'password'=>'required|min:6'
         ]);
