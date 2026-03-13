@@ -31,13 +31,19 @@ class NewArticleEvent implements ShouldBroadcast
     public function broadcastOn(): array
     {
         return [
-            new Channel('test'),
+            new Channel('articles'),
         ];
     }
+
+    public function broadcastAs(): string
+    {
+        return 'new-article';
+    }
+
     public function broadcastWith(): array
     {
         return [
-            'article'=>$this->article,
+            'article' => $this->article,
         ];
     }
 }

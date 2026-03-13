@@ -11,14 +11,16 @@
 export default {
     data() {
         return {
-            article: null
-        }
+            article: null,
+        };
     },
     mounted() {
-        window.Echo.channel('articles')
-            .listen('.new-article', (e) => {
-                this.article = e.article;
-            });
-    }
-}
+        if (window.Echo) {
+            window.Echo.channel('articles')
+                .listen('.new-article', (e) => {
+                    this.article = e.article;
+                });
+        }
+    },
+};
 </script>

@@ -34,7 +34,9 @@ class VeryLongJob implements ShouldQueue
      */
     public function handle(): void
     {
-        Mail::to('p.nazarenko04@mail.ru')
+        $to = env('COMMENT_MODERATION_EMAIL', config('mail.from.address'));
+
+        Mail::to($to)
             ->send(new Commentmail($this->comment, $this->article, $this->author));
     }
 }

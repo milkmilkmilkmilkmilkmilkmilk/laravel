@@ -24,31 +24,7 @@
       </td>
     </tr>
     @endforeach
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
   </tbody>
 </table>
-
-<!-- Pusher JS для уведомлений -->
-<script src="https://js.pusher.com/8.4.0/pusher.min.js"></script>
-<script>
-    // Включаем логирование для отладки
-    Pusher.logToConsole = true;
-
-    var pusher = new Pusher('{{ env("PUSHER_APP_KEY") }}', {
-        cluster: '{{ env("PUSHER_APP_CLUSTER") }}',
-        encrypted: true
-    });
-
-    var channel = pusher.subscribe('my-channel');
-    channel.bind('my-event', function(data) {
-        // Показываем alert при приходе события
-        alert('Новое событие: ' + JSON.stringify(data));
-    });
-</script>
 
 @endsection
