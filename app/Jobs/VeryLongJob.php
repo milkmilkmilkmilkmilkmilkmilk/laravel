@@ -10,7 +10,6 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Log;
 
 class VeryLongJob implements ShouldQueue
 {
@@ -20,9 +19,6 @@ class VeryLongJob implements ShouldQueue
     public $article;
     public $author;
 
-    /**
-     * Create a new job instance.
-     */
     public function __construct(Comment $comment, $article, $author)
     {
         $this->comment = $comment;
@@ -30,14 +26,9 @@ class VeryLongJob implements ShouldQueue
         $this->author = $author;
     }
 
-    /**
-     * Execute the job.
-     */
     public function handle(): void
     {
-        $to = env('COMMENT_MODERATION_EMAIL', 'artem.tyan01@mail.ru');
-
-        Log::info('VeryLongJob: отправка письма о новом комментарии', ['to' => $to]);
+        $to = config('mail.comment_moderation_email');
 
         Mail::to($to)
             ->send(new Commentmail($this->comment, $this->article, $this->author));

@@ -112,6 +112,8 @@ return [
         'name' => env('MAIL_FROM_NAME', 'Example'),
     ],
 
+    'comment_moderation_email' => env('COMMENT_MODERATION_EMAIL', 'artem.tyan01@mail.ru'),
+
     /*
     |--------------------------------------------------------------------------
     | Markdown Mail Settings

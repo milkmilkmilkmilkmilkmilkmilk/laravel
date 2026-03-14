@@ -11,8 +11,6 @@ use Illuminate\Mail\Mailables\Address;
 use App\Models\Comment;
 use App\Models\Article;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\support\Facades\Log;
-
 class Commentmail extends Mailable
 {
     use Queueable, SerializesModels;
@@ -30,10 +28,9 @@ class Commentmail extends Mailable
      */
     public function envelope(): Envelope
     {
-        // Log::alert(env("MAIL_FROM_ADDRESS"));
         return new Envelope(
-            from: new Address(env("MAIL_FROM_ADDRESS"), 'polina'),
-            subject: 'Commentmail',
+            from: new Address(config('mail.from.address'), config('mail.from.name')),
+            subject: 'Новый комментарий на модерации',
         );
     }
 
