@@ -10,7 +10,7 @@
 Для статьи: {{ $article_title }}.  
 Автор комментария: {{ $author }}.
 
-@component('mail::button', ['url' => route('comments.moderation')])
+@component('mail::button', ['url' => url(route('comments.moderation'))])
 Перейти к модерации
 @endcomponent
 

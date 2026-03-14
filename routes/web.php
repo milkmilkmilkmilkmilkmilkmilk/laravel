@@ -23,7 +23,6 @@ Route::post('/comments/update/{comment}', [CommentController::class, 'update'])
     ->middleware('auth')
     ->name('comments.update');
 
-// Удаление комментария
 Route::delete('/comments/{comment}', [CommentController::class, 'delete'])
     ->middleware('auth')
     ->name('comments.destroy');
