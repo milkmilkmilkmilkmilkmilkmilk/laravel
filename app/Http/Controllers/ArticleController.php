@@ -53,8 +53,12 @@ class ArticleController extends Controller
     public function show(Article $article)
     {
         $comments = Comment::where('article_id', $article->id)
-                           ->where('accept', true)
-                           ->get();
+            ->where(function ($q) {
+                $q->where('accept', true)
+                    ->orWhere('user_id', auth()->id());
+            })
+            ->orderBy('created_at')
+            ->get();
 
         return view('article.show', [
             'article' => $article,

@@ -32,7 +32,9 @@
 <ul class="list-group mb-4">
     @forelse ($comments as $comment)
         <li class="list-group-item">
-            {{-- Текст комментария --}}
+            @if (!$comment->accept)
+                <span class="badge bg-warning text-dark mb-2">Ожидает модерации</span>
+            @endif
             <div id="comment-text-{{ $comment->id }}" class="mb-2">
                 {{ $comment->text }}
             </div>
