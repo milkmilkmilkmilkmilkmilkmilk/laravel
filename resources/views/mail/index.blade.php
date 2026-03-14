@@ -33,8 +33,17 @@
             </td>
             <td>{{ $comment->text }}</td>
             <td>
-                <a href="/comments/accept/{{ $comment->id }}" class="btn btn-success">Принять</a>
-                <a href="/comments/reject/{{ $comment->id }}" class="btn btn-danger">Отклонить</a>
+                <form action="{{ route('comments.accept', $comment->id) }}" method="POST" style="display:inline;">
+                    @csrf
+                    @method('PATCH')
+                    <button type="submit" class="btn btn-success">Принять</button>
+                </form>
+
+                <form action="{{ route('comments.reject', $comment->id) }}" method="POST" style="display:inline;">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger">Отклонить</button>
+                </form>
             </td>
         </tr>
     @endforeach

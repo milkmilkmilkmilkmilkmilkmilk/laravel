@@ -40,7 +40,7 @@ class Commentmail extends Mailable
     public function content(): Content
     {
         return new Content(
-           markdown: 'mail.comment_moderation',
+           markdown: 'mail.comment',
             with:[
                 'comment'=>$this->comment,
                 'article_title'=>$this->article->title,
