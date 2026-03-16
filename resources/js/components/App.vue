@@ -7,20 +7,18 @@
     </div>
 </template>
 
+
 <script>
-export default {
-    data() {
-        return {
+        export default {
+        data() { return { 
             article: null,
-        };
-    },
-    mounted() {
-        if (window.Echo) {
-            window.Echo.channel('articles')
-                .listen('.new-article', (e) => {
-                    this.article = e.article;
-                });
+         } },
+            created() {
+                window.Echo.channel('articles').listen('NewArticleEvent', (data) => {
+                    console.log(data.article);
+                    this.article=data.article;
+                    // alert('Добавлена новая статья!');
+                })
+            }
         }
-    },
-};
-</script>
+    </script>

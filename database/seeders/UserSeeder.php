@@ -18,7 +18,7 @@ class UserSeeder extends Seeder
             'name' => 'Artem Tyan',
             'email' => 'artem.tyan01@mail.ru',
             'password' => Hash::make('06052012Zx'),
-            'role' => 'admin',
+            'role' => 'moderator',
         ]);
     }
 }
